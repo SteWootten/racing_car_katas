@@ -24,5 +24,13 @@ RSpec.describe Alarm do
         expect(subject.is_alarm_on).to be true
       end
     end
+
+    context 'pressure is OK' do
+      let(:sample_pressure) { 3 }
+
+      it 'does not turn on the alarm' do
+        expect(subject.is_alarm_on).to be false
+      end
+    end
   end
 end
