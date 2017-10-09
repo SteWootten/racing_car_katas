@@ -14,18 +14,18 @@ end
 
 class Alarm
 
-  attr_reader :acceptable_range, :is_alarm_on, :sensor
+  attr_reader :acceptable_range, :sensor
   private :acceptable_range, :sensor
 
   def initialize(sensor, acceptable_range)
     @acceptable_range = acceptable_range
     @sensor = sensor
-    @is_alarm_on = false
   end
 
   def check
-    @is_alarm_on = !within_acceptable_range?
+    !within_acceptable_range?
   end
+  alias_method :is_alarm_on, :check
 
   private
 
