@@ -3,8 +3,9 @@ require_relative '../lib/tire_pressure'
 RSpec.describe Alarm do
 
   describe '#check' do
-    subject { Alarm.new(sensor) }
+    subject { Alarm.new(sensor, acceptable_range) }
 
+    let(:acceptable_range) { (17..21) }
     let(:sensor) {
       instance_double(
         'Sensor',

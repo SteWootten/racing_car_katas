@@ -14,18 +14,17 @@ end
 
 class Alarm
 
-  attr_reader :is_alarm_on, :sensor
-  private :sensor
+  attr_reader :acceptable_range, :is_alarm_on, :sensor
+  private :acceptable_range, :sensor
 
-  def initialize(sensor)
-    @low_pressure_threshold = 17
-    @high_pressure_threshold = 21
+  def initialize(sensor, acceptable_range)
+    @acceptable_range = acceptable_range
     @sensor = sensor
     @is_alarm_on = false
   end
 
   def check
-    if psi_pressure_value < @low_pressure_threshold or @high_pressure_threshold < psi_pressure_value
+    if !acceptable_range.include?(psi_pressure_value)
       @is_alarm_on = true
     end
   end
