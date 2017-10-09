@@ -24,14 +24,16 @@ class Alarm
   end
 
   def check
-    if !acceptable_range.include?(psi_pressure_value)
-      @is_alarm_on = true
-    end
+    @is_alarm_on = !within_acceptable_range?
   end
 
   private
 
   def psi_pressure_value
     sensor.pop_next_pressure_psi_value
+  end
+
+  def within_acceptable_range?
+    acceptable_range.include?(psi_pressure_value)
   end
 end
